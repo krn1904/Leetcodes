@@ -1,38 +1,27 @@
 class Solution {
-    public boolean binarySearch(int target,int n,int[] nums){
-        int start = 0;
-        int end = n-1;
-        int flag = 0;
-        while(start <= end){
-            int mid = (start + end)/2;
-            if(nums[mid] < target){
-                start = mid+1;
+    public int missingNumber(int[] nums) {
+        cycl(nums);
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] != i){
+                return i;
             }
-            else if(nums[mid] > target){
-                end = mid - 1;
-            }
-            else{
-                flag = 1;
-                break;
-            }  
         }
-        if( flag == 1){
-            return true;
-        }else{
-            return false;
+        return nums.length;
+    }
+    public void cycl(int[] nums){
+        int i = 0;
+        while(i < nums.length){
+            int check = nums[i];
+            if(nums[i] < nums.length && nums[i] != nums[check]){
+                swap(i,check,nums);
+            }else{
+                i++;
+            }
         }
     }
-    public int missingNumber(int[] nums) {
-        int n = nums.length;
-        int c = -1;
-        Arrays.sort(nums);
-        for(int i =0; i<=n; i++){
-            if(binarySearch(i,n,nums)){
-            }else{
-                c = i;
-                break;
-            }
-    }    
-        return c;
-}
+    public void swap(int first, int second,int[] nums){
+        int temp = nums[first];
+        nums[first] = nums[second];
+        nums[second] = temp;
+    }
 }
