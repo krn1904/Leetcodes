@@ -9,14 +9,13 @@ class Solution {
                 i++;
             }
         }
-        int[]  arr = new int[]{-1,-1};
+        // int[]  arr = new int[]{-1,-1};
         for(int j = 0; j < nums.length; j++){
             if(nums[j] != j+1){
-             arr[0] = nums[j];
-                arr[1] = j+1;
+                return new int[]{nums[j],j+1};
             }
         }
-        return arr;
+                return new int[]{-1,-1};
     }
      public void swap(int[] nums,int start, int end){
         int temp = nums[start];
